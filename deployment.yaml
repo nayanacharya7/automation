@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: automation-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: automation
+  template:
+    metadata:
+      labels:
+        app: automation
+    spec:
+      containers:
+      - name: automation
+        image: nayan1103/automation:latest
+        ports:
+        - containerPort: 8080
