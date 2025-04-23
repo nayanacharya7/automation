@@ -47,10 +47,9 @@ pipeline
             steps {
                 script {
                     withCredentials([file(credentialsId: 'k8s-credentials', variable: 'KUBECONFIG')]) {
-                        withEnv(["KUBECONFIG=$KUBECONFIG"]) {
                             sh 'kubectl apply -f deployment.yaml --validate=false'
                             sh 'kubectl apply -f service.yaml --validate=false'
-                        }
+                        
                     }
                 }
             }
