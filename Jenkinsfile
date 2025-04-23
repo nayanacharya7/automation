@@ -39,17 +39,6 @@ pipeline
                 }
             }
         }
-        stage('Deploy to Kubernetes') {
-            steps {
-                script {
-                    // Use Kubeconfig file for authentication
-                    withCredentials([file(credentialsId: 'k8s-credentials', variable: 'KUBECONFIG')]) {
-                        // Deploy to Kubernetes using kubectl
-                        sh 'kubectl apply -f deployment.yaml'
-                        sh 'kubectl apply -f service.yaml'
-                    }
-                }
-            }
-       } 
+       
     }
 }
