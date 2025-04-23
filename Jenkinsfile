@@ -15,7 +15,8 @@ pipeline
     }
 
 
-    stages {
+    stages 
+    {
         stage('Maven Build') {
             steps {
                  checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nayanacharya7/automation']])
@@ -41,18 +42,18 @@ pipeline
                 }
             }
         }
-        stage('Deploy to Kubernetes') {
-        steps {
-            script {
-                withCredentials([file(credentialsId: 'k8s-credentials', variable: 'KUBECONFIG')]) {
-                    withEnv(["KUBECONFIG=$KUBECONFIG"]) {
-                        sh 'kubectl apply -f deployment.yaml --validate=false'
-                        sh 'kubectl apply -f service.yaml --validate=false'
+        stage('Deploy to Kubernetes') 
+        {
+            steps {
+                script {
+                    withCredentials([file(credentialsId: 'k8s-credentials', variable: 'KUBECONFIG')]) {
+                        withEnv(["KUBECONFIG=$KUBECONFIG"]) {
+                            sh 'kubectl apply -f deployment.yaml --validate=false'
+                            sh 'kubectl apply -f service.yaml --validate=false'
+                        }
                     }
                 }
             }
-    }
-}
-
+        }
     }
 }
