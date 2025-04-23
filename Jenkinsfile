@@ -8,6 +8,8 @@ pipeline
     }
      environment 
      {
+
+        KUBECONFIG = 'kubeconfig.yaml'
         DOCKER_USERNAME = 'nayan1103'
         DOCKER_PASSWORD = 'Gopala@1980' // Avoid using hard-coded credentials, use Jenkins secrets
     }
