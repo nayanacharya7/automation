@@ -9,10 +9,21 @@ pipeline {
         DOCKER_IMAGE = 'nayan1103/automation:latest'
     }
 
+    triggers {
+        githubPush()  // This enables GitHub webhook triggering
+    }
+
     stages {
+        stage('Checkout') {
+            steps {
+                checkout([$class: 'GitSCM',
+                          branches: [[name: '*/main']],
+                          userRemoteConfigs: [[url: 'https://github.com/nayanacharya7/automation']]])
+            }
+        }
+
         stage('Maven Build') {
             steps {
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/nayanacharya7/automation']])
                 sh 'mvn clean install'
             }
         }
