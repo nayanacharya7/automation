@@ -10,6 +10,7 @@ public class AutomationApplication {
         SpringApplication.run(AutomationApplication.class, args);
         System.out.println(" mmm AA DD QQ QQ");
         System.out.println(" jfergjergjjnsd");
+        System.out.println(" okgofgfvd,v");
 
     }
 
